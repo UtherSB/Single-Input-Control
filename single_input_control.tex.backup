@@ -1,0 +1,83 @@
+\include{header}
+
+\begin{document}
+\title{Single input control and Jurdjevic's theorem}
+\author{Uther Shackeley-Bennett}
+\maketitle
+
+\section{Jurdjevic amd Kupka's Theorem}
+From Elliott p95 and p117.
+\begin{definition}[Strong regularity] The matrix $B \in \mathfrak{gl}(n, \mathbb{R})$ is strongly regular if its eigenvalues $\lambda_k = \alpha_k +i\beta_k$, $k \in 1, \ldots, n$ are distinct, including $2m$ conjugate-complex
+pairs, and the real parts $\alpha_1 < \ldots < \alpha_{n-m}$ satisfy $\alpha_i - \alpha_j \neq \alpha_p - \alpha_q$ unless $i = p$ and $j = q$.
+\end{definition}
+
+\begin{theorem}[Jurdjevic and Kupka]
+ Assume that $\operatorname{Tr}(A) = 0 = \operatorname{Tr}(B)$ and $B$ is strongly regular. Choose coordinates so that $B = \operatorname{diag}(\alpha_1, \ldots \alpha_n)$. If $A$ satisfies 
+\begin{align}
+ A_{i,j} \neq 0 \quad \forall i,j &\text{ such that } |i - j| = 1, \\
+A_{1,n}A&_{n,1} < 0
+\end{align}
+then with $\Omega = \mathbb{R}$, $\dot{x} = (A + uB)x$ is controllable on $\mathbb{R}^n_*$.
+\end{theorem}
+
+Note that our A and B are always traceless. I am wondering about why we are told to diagonalise B; I don't think the alphas in the theorem are the same as those in the definition.
+
+
+\section{Examples}
+\subsection{Example 1}
+\begin{equation}
+ A = \begin{pmatrix} 0 & a & 0 & x \\ b & 0 & c & 0 \\0 & d & 0 & e \\y & 0 & f & 0 \end{pmatrix} = \begin{pmatrix} 0 & a & 0 & c \\ b & 0 & c & 0 \\0 & d & 0 & -b \\d & 0 & -a & 0 \end{pmatrix} = \begin{pmatrix} 0 & 2 & 0 & -3 \\ 4 & 0 & -3 & 0 \\0 & 5 & 0 & -4 \\5 & 0 & -2 & 0 \end{pmatrix} 
+\end{equation}
+$xy < 0$. The letters are non zero.
+
+The above is recursive.
+
+\begin{equation}
+ A = \begin{pmatrix} 0 & a & 0 & c \\ b & 0 & c & 0 \\0 & d & 0 & -b \\d & 0 & -a & 0 \end{pmatrix} = \begin{pmatrix} 0 & 7 & 0 & -3 \\ 7 & 0 & -3 & 0 \\0 & 5 & 0 & -7 \\5 & 0 & -7 & 0 \end{pmatrix} 
+\end{equation}
+
+This example has all real eigenvalues. If we construct B such that this cannot be made imag. then we are OK....
+
+\begin{equation}
+ B = \begin{pmatrix} a+ib & 0 & 0 & 0 \\ 0 & a-ib & 0 & 0 \\0 & 0 & c+id & 0 \\0 & 0 & 0 & c-id \end{pmatrix} = \begin{pmatrix} 2+i3 & 0 & 0 & 0 \\ 0 & 2-i3 & 0 & 0 \\0 & 0 & -2+i3 & 0 \\0 & 0 & 0 & -2-i3 \end{pmatrix}
+\end{equation}
+
+The eigenvalues are all distinct and $a-c$ are not equal to any other real parts subtracted. 
+
+What I want is an example such that a compact drift field is not constructible. Presumably no point trying in 1 mode because of Wu's theorem.
+
+\begin{equation}
+ A+uB = \begin{pmatrix} u(2+i3) & 7 & 0 & -3 \\ 7 & u(2-i3) & -3 & 0 \\0 & 5 & u(-2+i3) & -7 \\5 & 0 & -7 & u(-2-i3) \end{pmatrix} 
+\end{equation}
+This example is not recursive for $u=1$. I need to show that this is never recursive for any value of $u$. On MATLAB I find that there are values of u for which this has imaginary eigenvalues.
+
+
+So trying for a more general example
+\begin{equation}
+ A = \begin{pmatrix} 0 & a & 0 & c \\ b & 0 & c & 0 \\0 & d & 0 & -b \\d & 0 & -a & 0 \end{pmatrix} = \begin{pmatrix} 0 & 7 & 0 & -3 \\ 7 & 0 & -3 & 0 \\0 & 5 & 0 & -7 \\5 & 0 & -7 & 0 \end{pmatrix} 
+\end{equation}
+
+
+So what I want is to construct some Hamiltonian matrix $A+uB$ satisfying all the condtion on $A$ and $B$ such that there is no value of $u$ that will give it imaginary eigenvalues. If there is then we could just set this as our drift field. I want to construct a controllable counter-example to Alessio's conjecture.
+
+\subsection{Master equation}
+General $A$ matrix:
+\begin{equation}
+A = \begin{pmatrix} a & b & c & d \\ e & f & d & h \\i & j & -a & -e \\j & g & -b & -f \end{pmatrix}
+\end{equation}
+such that $b,d,e,j \neq 0$ and $jd < 0$. (note that without these conditions this is just a general Hamiltonian matrix).
+
+General $B$ matrix:
+\begin{equation}
+ B = \begin{pmatrix} x+iy & 0 & 0 & 0 \\ 0 & x-iy & 0 & 0 \\0 & 0 & -x+iy & 0 \\0 & 0 & 0 & -x-iy \end{pmatrix}.
+\end{equation}
+
+General $A+uB$ matrix:
+\begin{equation}
+A = \begin{pmatrix} a+u(x+iy) & b & c & d \\ e & f+u(x-iy) & d & h \\i & j & -a+u(-x+iy) & -e \\j & g & -b & -f+u(-x-iy) \end{pmatrix}.
+\end{equation}
+
+I would like the eigenvalue equations of $A+uB$.
+
+
+\end{document}

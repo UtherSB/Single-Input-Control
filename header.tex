@@ -1,0 +1,57 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[dvips,letterpaper]{geometry} % Margins.
+\usepackage{hyperref}
+\usepackage{comment}
+
+%\makeatletter % Need for anything that contains an @ command 
+%\renewcommand{\maketitle} % Redefine maketitle to conserve space
+%{ \begingroup \vskip 10pt \begin{center} \LARGE {\emph \@title}
+%	\vskip 40pt \large \@author \vskip 10pt \@date \end{center}
+% \vskip 10pt \endgroup \setcounter{footnote}{0} }
+%\makeatother % End of region containing @ commands
+
+\let\underdot=\d % rename builtin command \d{} to \underdot{}
+\renewcommand{\d}[2]{\frac{d #1}{d #2}} % for derivatives
+\newcommand{\dd}[2]{\frac{d^2 #1}{d #2^2}} % for double derivatives
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}} % for partial derivatives
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}} % for double partial derivatives
+\newcommand{\pdc}[3]{\left( \frac{\partial #1}{\partial #2}\right)_{#3}} % for thermodynamic partial derivatives
+\newcommand{\avg}[1]{\langle #1 \rangle}
+\newcommand{\ket}[1]{| #1 \rangle}
+\newcommand{\bra}[1]{\langle #1 |}
+\newcommand{\braket}[2]{\langle #1 | #2 \rangle} % for Dirac brackets
+\newcommand{\ketbra}[2]{| #1 \rangle\langle #2 |}
+\newcommand{\matrixel}[3]{\langle #1 | #2 | #3 \rangle} % for Dirac matrix elements
+
+\def\dbar{{\mathchar'26\mkern-12mu d}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{plain}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\theoremstyle{plain}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{example}{Example}
+
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Spin}{Spin}
+\DeclareMathOperator{\Oh}{O}
+\DeclareMathOperator{\eS}{S}
+
+\usepackage{bbm}
+\usepackage{enumerate}
+\newcommand{\behaviour}{(\Xi,\widetilde{\mathcal{M}}, P)}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\st}{s.t.}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Tr}{Tr}
