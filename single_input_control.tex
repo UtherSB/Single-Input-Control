@@ -1,7 +1,7 @@
 \include{header}
 
 \begin{document}
-\title{Single input control and Jurdjevic's theorem}
+\title{Single input, 2 mode counterexample to Alessio's conjecture using Jurdjevic and Kupka}
 \author{Uther Shackeley-Bennett}
 \maketitle
 
@@ -11,8 +11,8 @@ From Elliott p95 and p117.
 pairs, and the real parts $\alpha_1 < \ldots < \alpha_{n-m}$ satisfy $\alpha_i - \alpha_j \neq \alpha_p - \alpha_q$ unless $i = p$ and $j = q$.
 \end{definition}
 
-\begin{theorem}[Jurdjevic and Kupka]
- Assume that $\operatorname{Tr}(A) = 0 = \operatorname{Tr}(B)$ and $B$ is strongly regular. Choose coordinates so that $B = \operatorname{diag}(\alpha_1, \ldots \alpha_n)$. If $A$ satisfies 
+\begin{theorem}[Jurdjevic and Kupka (note the capitalisation typo in Elliott)]
+ Assume that $\operatorname{Tr}(A) = 0 = \operatorname{Tr}(B)$ and $B$ is strongly regular. Choose coordinates so that $B = \operatorname{diag}(\lambda_1, \ldots, \lambda_n)$. If $A$ satisfies 
 \begin{align}
  A_{i,j} \neq 0 \quad \forall i,j &\text{ such that } |i - j| = 1, \\
 A_{1,n}A&_{n,1} < 0
@@ -20,64 +20,125 @@ A_{1,n}A&_{n,1} < 0
 then with $\Omega = \mathbb{R}$, $\dot{x} = (A + uB)x$ is controllable on $\mathbb{R}^n_*$.
 \end{theorem}
 
-Note that our A and B are always traceless. I am wondering about why we are told to diagonalise B; I don't think the alphas in the theorem are the same as those in the definition.
+\begin{proposition}[From Meyer]
+ The characteristic polynomial of a real Hamiltonian matrix is an even polynomial. Thus, if $\lambda$ is an eigenvalues of a Hamiltonian matrix, then so are $-\lambda, \lambda^*, -\lambda^*$. The trace of a Hamiltonian matrix id always $0$.
+\end{proposition}
 
+Note that any matrix with dinstinct eigenvalues is diagonalisable.
 
-\section{Examples}
-\subsection{Example 1}
+\textbf{I am wondering about why we are told to diagonalise B; I don't think the alphas in the theorem are the same as those in the definition.. So it just seems like a poor choice of notation in Elliott. It's annoying because it looks like we could be requiring that $B$ have real eigenvalues. I have changed my notation but I want this to be at the back of my mind.}
+
+\section{Two mode, Hamiltonians matrix with the Jurdjevic-Kupka conditions}
+In two modes a general Hamiltonian matrix is of the form
 \begin{equation}
- A = \begin{pmatrix} 0 & a & 0 & x \\ b & 0 & c & 0 \\0 & d & 0 & e \\y & 0 & f & 0 \end{pmatrix} = \begin{pmatrix} 0 & a & 0 & c \\ b & 0 & c & 0 \\0 & d & 0 & -b \\d & 0 & -a & 0 \end{pmatrix} = \begin{pmatrix} 0 & 2 & 0 & -3 \\ 4 & 0 & -3 & 0 \\0 & 5 & 0 & -4 \\5 & 0 & -2 & 0 \end{pmatrix} 
+A = \begin{pmatrix} a & b & c & d \\ e & f & d & h \\k & l & -a & -e \\l & g & -b & -f \end{pmatrix}.
 \end{equation}
-$xy < 0$. The letters are non zero.
+Setting this as the form of our drift field we may then add the Jurdjevic conditions: $b,d,e,l \neq 0$ and $dl < 0$.
 
-The above is recursive.
-
+With its distinct eigenvalues $B$ can be diagonalised to one of three forms:
 \begin{equation}
- A = \begin{pmatrix} 0 & a & 0 & c \\ b & 0 & c & 0 \\0 & d & 0 & -b \\d & 0 & -a & 0 \end{pmatrix} = \begin{pmatrix} 0 & 7 & 0 & -3 \\ 7 & 0 & -3 & 0 \\0 & 5 & 0 & -7 \\5 & 0 & -7 & 0 \end{pmatrix} 
+B_1 = \begin{pmatrix} x+iy & 0 & 0 & 0 \\ 0 & x-iy & 0 & 0 \\0 & 0 & -x+iy & 0 \\0 & 0 & 0 & -x-iy \end{pmatrix},
 \end{equation}
-
-This example has all real eigenvalues. If we construct B such that this cannot be made imag. then we are OK....
-
 \begin{equation}
- B = \begin{pmatrix} a+ib & 0 & 0 & 0 \\ 0 & a-ib & 0 & 0 \\0 & 0 & c+id & 0 \\0 & 0 & 0 & c-id \end{pmatrix} = \begin{pmatrix} 2+i3 & 0 & 0 & 0 \\ 0 & 2-i3 & 0 & 0 \\0 & 0 & -2+i3 & 0 \\0 & 0 & 0 & -2-i3 \end{pmatrix}
+B_2 = \begin{pmatrix} x & 0 & 0 & 0 \\ 0 & -x & 0 & 0 \\0 & 0 & y & 0 \\0 & 0 & 0 & -y \end{pmatrix},
 \end{equation}
-
-The eigenvalues are all distinct and $a-c$ are not equal to any other real parts subtracted. 
-
-What I want is an example such that a compact drift field is not constructible. Presumably no point trying in 1 mode because of Wu's theorem.
-
 \begin{equation}
- A+uB = \begin{pmatrix} u(2+i3) & 7 & 0 & -3 \\ 7 & u(2-i3) & -3 & 0 \\0 & 5 & u(-2+i3) & -7 \\5 & 0 & -7 & u(-2-i3) \end{pmatrix} 
+B_3 = \begin{pmatrix} ix & 0 & 0 & 0 \\ 0 & -ix & 0 & 0 \\0 & 0 & iy & 0 \\0 & 0 & 0 & -iy \end{pmatrix},
 \end{equation}
-This example is not recursive for $u=1$. I need to show that this is never recursive for any value of $u$. On MATLAB I find that there are values of u for which this has imaginary eigenvalues.
+for $x,y \in \mathbb{R}$.
+The conditions that it must satisfy to be strongly regular are trivially satisfied in two modes.
 
-
-So trying for a more general example
+Therefore a general $A+uB$ matrix looks like one of
 \begin{equation}
- A = \begin{pmatrix} 0 & a & 0 & c \\ b & 0 & c & 0 \\0 & d & 0 & -b \\d & 0 & -a & 0 \end{pmatrix} = \begin{pmatrix} 0 & 7 & 0 & -3 \\ 7 & 0 & -3 & 0 \\0 & 5 & 0 & -7 \\5 & 0 & -7 & 0 \end{pmatrix} 
+G_1 = \begin{pmatrix} a+u(x+iy) & b & c & d \\ e & f+u(x-iy) & d & h \\k & l & -a+u(-x+iy) & -e \\l & g & -b & -f+u(-x-iy) \end{pmatrix},
 \end{equation}
-
-
-So what I want is to construct some Hamiltonian matrix $A+uB$ satisfying all the condtion on $A$ and $B$ such that there is no value of $u$ that will give it imaginary eigenvalues. If there is then we could just set this as our drift field. I want to construct a controllable counter-example to Alessio's conjecture.
-
-\subsection{Master equation}
-General $A$ matrix:
 \begin{equation}
-A = \begin{pmatrix} a & b & c & d \\ e & f & d & h \\k & l & -a & -e \\l & g & -b & -f \end{pmatrix}
+G_2 = \begin{pmatrix} a+ux & b & c & d \\ e & f-ux & d & h \\k & l & -a+uy & -e \\l & g & -b & -f-uy \end{pmatrix},
 \end{equation}
-such that $b,d,e,l \neq 0$ and $dl < 0$. (note that without these conditions this is just a general Hamiltonian matrix).
-
-General $B$ matrix:
 \begin{equation}
- B = \begin{pmatrix} x+iy & 0 & 0 & 0 \\ 0 & x-iy & 0 & 0 \\0 & 0 & -x+iy & 0 \\0 & 0 & 0 & -x-iy \end{pmatrix}.
+G_3 = \begin{pmatrix} a+iux & b & c & d \\ e & f-iux & d & h \\k & l & -a+iuy & -e \\l & g & -b & -f-iuy \end{pmatrix}.
 \end{equation}
 
-General $A+uB$ matrix:
+\section{Neutrality}
 \begin{equation}
-A = \begin{pmatrix} a+u(x+iy) & b & c & d \\ e & f+u(x-iy) & d & h \\k & l & -a+u(-x+iy) & -e \\l & g & -b & -f+u(-x-iy) \end{pmatrix}.
+ \dot{X} = AX + \sum_{1}^m u_i(t)B_iX, \quad X(0)=I_n, \quad u(\cdot)=\Omega, \quad t \geq 0. \label{eq:opcont}
 \end{equation}
 
-I would like the eigenvalue equations of $A+uB$. From this my question is: are there values of $a,b,c,d,e,f,g,h,k,l,x,y$ such that there is no value of $u$ to make the eigenvalue expression less than $0$. I can have this function in matlab and then have a load of inputs so I can play around. Ensuring that I stick to the few conditions: that some can't be zero and the $dl$ condition.
 
+
+\begin{definition}[Elliott p97]
+Neutrality of matrix $C$ is equivalent to each of the following properties:
+\begin{itemize}
+ \item $C$ is similar over $\mathbb{R}$ to a skew-symmetric matrix.
+\item $\operatorname{spec}(C)$ lies in the imaginary axis and $C$ is diagonalisable over $C$.
+\item The closure of $e^{\mathbb{R}C}$ is compact.
+\item There exists $\sigma > 0$ and a sequence of times $\{t_k\}_1^\infty$ with $t_k \geq \sigma$ such that $\lim_{k\to\infty}||e^{t_kC}-I|| = 0$.
+\item $| \Tr(C)| = 0$ and $||e^{tC}||$ are bounded on $\mathbb{R}$.
+\end{itemize}
+\end{definition}
+
+\begin{theorem}
+Let $\Omega = \mathbb{R}^m$
+\begin{itemize}
+ \item If there are constants $\delta_i \in \Omega$ such that $A_\delta := A+\sum_1^m\delta_iB_i$ is neutral then $S = G_\alpha$;
+\item If, also, the Lie rank of $\mathfrak{g}_\alpha$ is $n$ then (\ref{eq:opcont}) is controllable.
+\end{itemize}
+\end{theorem}
+\begin{proof}
+ see Elliott p97.
+\end{proof}
+
+\subsection{Neutrality and Hamiltonian matrices}
+
+
+
+% \section{Counterexample}
+% Counterexample to neutrality being necessary and sufficient for symplectic algebra generators.
+% 
+% \subsection{Commutator approach}
+% 
+% The condition of neutrality for a Hamiltonian matrix $X$ is equivalent to $[J,X] = 0$ where $J$ is.... Consdiering $G_1$:
+% \begin{equation}
+% [J,G]=
+% \begin{pmatrix} c+k & d+l & -2(a+ux) & -b-e \\ d+l & g+h & -b-e & -2(f+ux) \\ -2(a+ux) & -b-e & -c-k & -d-l \\ -b-e & -2(f+ux) & -d-l & -g-h \end{pmatrix}
+% \end{equation}
+% 
+% For a counterexample we require that $b,d,e,l \neq 0$, $dl <0$ and \textbf{probably} that $x, y \neq 0$ too \textit{as well as} $[J,G] \neq 0 \; \forall u$. $u$ is only affecting certain of the elements so the initial answer seems to be yes, certainly.
+% 
+% \subsection{Old eigenvalue approach}
+% I would like the eigenvalue equations of $A+uB$. From this my question is: are there values of $a,b,c,d,e,f,g,h,k,l,x,y$ such that there is no value of $u$ to make the eigenvalue expression less than $0$. I can have this function in matlab and then have a load of inputs so I can play around. Ensuring that I stick to the few conditions: that some can't be zero and the $dl$ condition.
+% 
+% \section{Examples}
+% \subsection{Example 1}
+% \begin{equation}
+%  A = \begin{pmatrix} 0 & a & 0 & x \\ b & 0 & c & 0 \\0 & d & 0 & e \\y & 0 & f & 0 \end{pmatrix} = \begin{pmatrix} 0 & a & 0 & c \\ b & 0 & c & 0 \\0 & d & 0 & -b \\d & 0 & -a & 0 \end{pmatrix} = \begin{pmatrix} 0 & 2 & 0 & -3 \\ 4 & 0 & -3 & 0 \\0 & 5 & 0 & -4 \\5 & 0 & -2 & 0 \end{pmatrix} 
+% \end{equation}
+% $xy < 0$. The letters are non zero.
+% 
+% The above is recursive.
+% 
+% \begin{equation}
+%  A = \begin{pmatrix} 0 & a & 0 & c \\ b & 0 & c & 0 \\0 & d & 0 & -b \\d & 0 & -a & 0 \end{pmatrix} = \begin{pmatrix} 0 & 7 & 0 & -3 \\ 7 & 0 & -3 & 0 \\0 & 5 & 0 & -7 \\5 & 0 & -7 & 0 \end{pmatrix} 
+% \end{equation}
+% 
+% This example has all real eigenvalues. If we construct B such that this cannot be made imag. then we are OK....
+% 
+% \begin{equation}
+%  B = \begin{pmatrix} a+ib & 0 & 0 & 0 \\ 0 & a-ib & 0 & 0 \\0 & 0 & c+id & 0 \\0 & 0 & 0 & c-id \end{pmatrix} = \begin{pmatrix} 2+i3 & 0 & 0 & 0 \\ 0 & 2-i3 & 0 & 0 \\0 & 0 & -2+i3 & 0 \\0 & 0 & 0 & -2-i3 \end{pmatrix}
+% \end{equation}
+% 
+% The eigenvalues are all distinct and $a-c$ are not equal to any other real parts subtracted. 
+% 
+% What I want is an example such that a compact drift field is not constructible. Presumably no point trying in 1 mode because of Wu's theorem.
+% 
+% \begin{equation}
+%  A+uB = \begin{pmatrix} u(2+i3) & 7 & 0 & -3 \\ 7 & u(2-i3) & -3 & 0 \\0 & 5 & u(-2+i3) & -7 \\5 & 0 & -7 & u(-2-i3) \end{pmatrix} 
+% \end{equation}
+% This example is not recursive for $u=1$. I need to show that this is never recursive for any value of $u$. On MATLAB I find that there are values of u for which this has imaginary eigenvalues.
+% 
+% So trying for a more general example
+% \begin{equation}
+%  A = \begin{pmatrix} 0 & a & 0 & c \\ b & 0 & c & 0 \\0 & d & 0 & -b \\d & 0 & -a & 0 \end{pmatrix} = \begin{pmatrix} 0 & 7 & 0 & -3 \\ 7 & 0 & -3 & 0 \\0 & 5 & 0 & -7 \\5 & 0 & -7 & 0 \end{pmatrix} 
+% \end{equation}
 
 \end{document}

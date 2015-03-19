@@ -1,7 +1,7 @@
 \include{header}
 
 \begin{document}
-\title{Single input control and Jurdjevic's theorem}
+\title{Single input, 2 mode counterexample to Alessio's conjecture using Jurdjevic and Kupka}
 \author{Uther Shackeley-Bennett}
 \maketitle
 
@@ -11,8 +11,8 @@ From Elliott p95 and p117.
 pairs, and the real parts $\alpha_1 < \ldots < \alpha_{n-m}$ satisfy $\alpha_i - \alpha_j \neq \alpha_p - \alpha_q$ unless $i = p$ and $j = q$.
 \end{definition}
 
-\begin{theorem}[Jurdjevic and Kupka]
- Assume that $\operatorname{Tr}(A) = 0 = \operatorname{Tr}(B)$ and $B$ is strongly regular. Choose coordinates so that $B = \operatorname{diag}(\alpha_1, \ldots \alpha_n)$. If $A$ satisfies 
+\begin{theorem}[Jurdjevic and Kupka (note the capitalisation typo in Elliott)]
+ Assume that $\operatorname{Tr}(A) = 0 = \operatorname{Tr}(B)$ and $B$ is strongly regular. Choose coordinates so that $B = \operatorname{diag}(\lambda_1, \ldots, \lambda_n)$. If $A$ satisfies 
 \begin{align}
  A_{i,j} \neq 0 \quad \forall i,j &\text{ such that } |i - j| = 1, \\
 A_{1,n}A&_{n,1} < 0
@@ -20,8 +20,60 @@ A_{1,n}A&_{n,1} < 0
 then with $\Omega = \mathbb{R}$, $\dot{x} = (A + uB)x$ is controllable on $\mathbb{R}^n_*$.
 \end{theorem}
 
-Note that our A and B are always traceless. I am wondering about why we are told to diagonalise B; I don't think the alphas in the theorem are the same as those in the definition.
+\begin{proposition}[From Meyer]
+ The characteristic polynomial of a real Hamiltonian matrix is an even polynomial. Thus, if $\lambda$ is an eigenvalues of a Hamiltonian matrix, then so are $-\lambda, \lambda^*, -\lambda^*$. The trace of a Hamiltonian matrix id always $0$.
+\end{proposition}
 
+Note that any matrix with dinstinct eigenvalues is diagonalisable.
+
+\textbf{I am wondering about why we are told to diagonalise B; I don't think the alphas in the theorem are the same as those in the definition.. So it just seems like a poor choice of notation in Elliott. It's annoying because it looks like we could be requiring that $B$ have real eigenvalues. I have changed my notation but I want this to be at the back of my mind.}
+
+\section{Two mode, Hamiltonians matrix with the Jurdjevic-Kupka conditions}
+In two modes a general Hamiltonian matrix is of the form
+\begin{equation}
+A = \begin{pmatrix} a & b & c & d \\ e & f & d & h \\k & l & -a & -e \\l & g & -b & -f \end{pmatrix}.
+\end{equation}
+Setting this as the form of our drift field we may then add the Jurdjevic conditions: $b,d,e,l \neq 0$ and $dl < 0$.
+
+With its distinct eigenvalues $B$ can be diagonalised to one of three forms:
+\begin{equation}
+B_1 = \begin{pmatrix} x+iy & 0 & 0 & 0 \\ 0 & x-iy & 0 & 0 \\0 & 0 & -x+iy & 0 \\0 & 0 & 0 & -x-iy \end{pmatrix},
+\end{equation}
+\begin{equation}
+B_2 = \begin{pmatrix} x & 0 & 0 & 0 \\ 0 & -x & 0 & 0 \\0 & 0 & y & 0 \\0 & 0 & 0 & -y \end{pmatrix},
+\end{equation}
+\begin{equation}
+B_3 = \begin{pmatrix} ix & 0 & 0 & 0 \\ 0 & -ix & 0 & 0 \\0 & 0 & iy & 0 \\0 & 0 & 0 & -iy \end{pmatrix},
+\end{equation}
+for $x,y \in \mathbb{R}$.
+The conditions that it must satisfy to be strongly regular are trivially satisfied in two modes.
+
+Therefore a general $A+uB$ matrix looks like one of
+\begin{equation}
+G_1 = \begin{pmatrix} a+u(x+iy) & b & c & d \\ e & f+u(x-iy) & d & h \\k & l & -a+u(-x+iy) & -e \\l & g & -b & -f+u(-x-iy) \end{pmatrix},
+\end{equation}
+\begin{equation}
+G_2 = \begin{pmatrix} a+ux & b & c & d \\ e & f-ux & d & h \\k & l & -a+uy & -e \\l & g & -b & -f-uy \end{pmatrix},
+\end{equation}
+\begin{equation}
+G_3 = \begin{pmatrix} a+iux & b & c & d \\ e & f-iux & d & h \\k & l & -a+iuy & -e \\l & g & -b & -f-iuy \end{pmatrix}.
+\end{equation}
+
+\section{Counterexample}
+Counterexample to neutrality being necessary and sufficient for symplectic algebra generators.
+
+\subsection{Commutator approach}
+
+The condition of neutrality for a Hamiltonian matrix $X$ is equivalent to $[J,X] = 0$ where $J$ is.... Consdiering $G$:
+\begin{equation}
+[J,G]=
+\begin{pmatrix} c+k & d+l & -2(a+ux) & -b-e \\ d+l & g+h & -b-e & -2(f+ux) \\ -2(a+ux) & -b-e & -c-k & -d-l \\ -b-e & -2(f+ux) & -d-l & -g-h \end{pmatrix}
+\end{equation}
+
+For a counterexample we require that $b,d,e,l \neq 0$, $dl <0$ and \textbf{probably} that $x, y \neq 0$ too \textit{as well as} $[J,G] \neq 0 \; \forall u$. $u$ is only affecting certain of the elements so the initial answer seems to be yes, certainly.
+
+\subsection{Old eigenvalue approach}
+I would like the eigenvalue equations of $A+uB$. From this my question is: are there values of $a,b,c,d,e,f,g,h,k,l,x,y$ such that there is no value of $u$ to make the eigenvalue expression less than $0$. I can have this function in matlab and then have a load of inputs so I can play around. Ensuring that I stick to the few conditions: that some can't be zero and the $dl$ condition.
 
 \section{Examples}
 \subsection{Example 1}
@@ -51,33 +103,9 @@ What I want is an example such that a compact drift field is not constructible. 
 \end{equation}
 This example is not recursive for $u=1$. I need to show that this is never recursive for any value of $u$. On MATLAB I find that there are values of u for which this has imaginary eigenvalues.
 
-
 So trying for a more general example
 \begin{equation}
  A = \begin{pmatrix} 0 & a & 0 & c \\ b & 0 & c & 0 \\0 & d & 0 & -b \\d & 0 & -a & 0 \end{pmatrix} = \begin{pmatrix} 0 & 7 & 0 & -3 \\ 7 & 0 & -3 & 0 \\0 & 5 & 0 & -7 \\5 & 0 & -7 & 0 \end{pmatrix} 
 \end{equation}
-
-
-So what I want is to construct some Hamiltonian matrix $A+uB$ satisfying all the condtion on $A$ and $B$ such that there is no value of $u$ that will give it imaginary eigenvalues. If there is then we could just set this as our drift field. I want to construct a controllable counter-example to Alessio's conjecture.
-
-\subsection{Master equation}
-General $A$ matrix:
-\begin{equation}
-A = \begin{pmatrix} a & b & c & d \\ e & f & d & h \\i & j & -a & -e \\j & g & -b & -f \end{pmatrix}
-\end{equation}
-such that $b,d,e,j \neq 0$ and $jd < 0$. (note that without these conditions this is just a general Hamiltonian matrix).
-
-General $B$ matrix:
-\begin{equation}
- B = \begin{pmatrix} x+iy & 0 & 0 & 0 \\ 0 & x-iy & 0 & 0 \\0 & 0 & -x+iy & 0 \\0 & 0 & 0 & -x-iy \end{pmatrix}.
-\end{equation}
-
-General $A+uB$ matrix:
-\begin{equation}
-A = \begin{pmatrix} a+u(x+iy) & b & c & d \\ e & f+u(x-iy) & d & h \\i & j & -a+u(-x+iy) & -e \\j & g & -b & -f+u(-x-iy) \end{pmatrix}.
-\end{equation}
-
-I would like the eigenvalue equations of $A+uB$.
-
 
 \end{document}
